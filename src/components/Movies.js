@@ -28,6 +28,7 @@ class Movies extends Component {
 
     return (
       <div className="movies-wrapper">
+        {!this.state.isLoaded ? 'Učitava se...' : null}
         {filmoviJsx}
       </div>
     )
