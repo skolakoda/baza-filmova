@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import filmovi from '../data/filmovi.json'
 import './Movies.css';
 
 class Movies extends Component {
@@ -8,7 +7,6 @@ class Movies extends Component {
     isLoaded: false,
   }
 
- 
   componentDidMount() {
     fetch('https://baza-podataka.herokuapp.com/filmovi/')
     .then(response => response.json())

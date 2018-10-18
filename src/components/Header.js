@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
-import logo from '../assets/logo.svg';
 
 class Header extends Component {
   render() {
     return (
       <header className="App-header">
-        {/* <img className="App-logo" src={logo} alt="logo" /> */}
         <h1>Baza filmova</h1>
+        <h2>Zdravo {this.props.ime}</h2>
       </header>
     )
   }

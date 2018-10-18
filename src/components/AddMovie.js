@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './Movies.css';
 
 class AddMovie extends Component {
+  
   state = {
    movieName:"",
    movieImg:"",
@@ -9,22 +10,21 @@ class AddMovie extends Component {
    visible:false,
   }
 
-  
-  togle = (imefilmna) => {
+  togle = () => {
     this.setState({
-      visible:!this.state.visible
+      visible: !this.state.visible
     })
   }
 
-  handleInput = (event )=> {
+  handleInput = (event) => {
     const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({[name]:value});
-    
+    this.setState({
+      [target.name]: target.value
+    });
   }
-  
-  addMovie =  ()  => {
+
+  addMovie = e => {
+    e.preventDefault()
     fetch('https://baza-podataka.herokuapp.com/dodaj-film/', {
       method: 'post',
       headers: {
@@ -37,8 +37,11 @@ class AddMovie extends Component {
         slika: this.state.movieImg
       })
     })
-    alert(`Movie " ${this.state.movieName.toUpperCase()}" has been updated to movie base.
-          Thank you for updating!`);
+    .then(res => {
+      alert(`Movie " ${this.state.movieName.toUpperCase()}" has been updated to movie base. Thank you for updating!`)
+      window.location.reload()
+    })
+    .catch(e => alert('Došlo je do greške'))
   }
 
   render() {
@@ -48,13 +51,13 @@ class AddMovie extends Component {
         <button onClick={this.togle}>Add Movie</button>
           <div style={ visible ? {display:"block"} : {display:"none"} }>
             <form onSubmit={this.addMovie}>
-                  <input  name="movieName"  onBlur={this.handleInput} placeholder="Add title"required/>
-                  <input  name="movieYear"  onBlur={this.handleInput} placeholder="Add year" required/>
-                  <input  name="movieImg"   onBlur={this.handleInput} placeholder="Add img url" required/>
-                  <input className="inputSubmit" type="submit" value="Confirm"/>
+              <input  name="movieName"  onChange={this.handleInput} placeholder="Add title" required/>
+              <input  name="movieYear"  onChange={this.handleInput} placeholder="Add year" required/>
+              <input  name="movieImg"   onChange={this.handleInput} placeholder="Add img url" required/>
+              <input className="inputSubmit" type="submit" value="Confirm"/>
              </form>
           </div>
-                </div>
+      </div>
     )
   }
 }
