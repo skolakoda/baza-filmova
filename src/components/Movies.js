@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+
+import Movie from './Movie'
 import './Movies.css';
 
 class Movies extends Component {
@@ -15,30 +17,21 @@ class Movies extends Component {
       isLoaded: true
     }))
   }
-  deleteMovie =(id,name)=>{
-    if(window.confirm(`Delete movie: "${name}" ?`)){
-      fetch('https://baza-podataka.herokuapp.com/obrisi-film/' +id)
-      alert("Movie  deleted")
-      window.location.reload()
-      }
-    }
-  
 
   render() {
     const filmoviJsx = this.state.filmovi.map(film => (
-      <div key={film._id}>
-        <h3>{film.naziv}</h3>
-        <img src={film.slika} alt={film.naziv} />
-        <p>{film.godina}</p>
-        <button onClick={()=>this.deleteMovie(film._id,film.naziv)}>Delete</button>
-      </div>
+      <Movie key={film._id} podaci={{
+        naziv: film.naziv,
+        godina: film.godina,
+        slika: film.slika,
+        _id: film._id,
+      }} />
     ))
-   
 
     return (
       <div className="movies-wrapper">
         {!this.state.isLoaded ? 'Učitava se...' : null}
-          {filmoviJsx}
+        {filmoviJsx}
       </div>
     )
   }
