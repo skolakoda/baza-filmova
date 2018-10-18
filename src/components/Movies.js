@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import Movie from './Movie'
+import MiniAddMovie from './MiniAddMovie'
 import './Movies.css';
 
 class Movies extends Component {
@@ -29,9 +30,12 @@ class Movies extends Component {
     ))
 
     return (
-      <div className="movies-wrapper">
-        {!this.state.isLoaded ? 'Učitava se...' : null}
-        {filmoviJsx}
+      <div>
+        <MiniAddMovie/>
+        <div className="movies-wrapper">
+          {!this.state.isLoaded ? 'Učitava se...' : null}
+          {filmoviJsx}
+        </div>
       </div>
     )
   }

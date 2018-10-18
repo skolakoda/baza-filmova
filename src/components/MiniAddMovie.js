@@ -1,11 +1,18 @@
 import React, {Component} from 'react'
-import './AddMovie.css';
+import './Movies.css';
 
-class AddMovie extends Component {
+class MiniAddMovie extends Component {
   state = {
    movieName:"",
    movieImg:"",
    movieYear:"",
+   visible:false,
+  }
+
+  togle = () => {
+    this.setState({
+      visible: !this.state.visible
+    })
   }
 
   handleInput = (event) => {
@@ -37,16 +44,19 @@ class AddMovie extends Component {
   }
 
   render() {
+    let { visible } = this.state
     return (
-      <form onSubmit={this.addMovie}>
-        <h2>Dodaj film</h2>
-        <input className="input"  name="movieName"  onChange={this.handleInput} placeholder="Add title" required/>
-        <input className="input" name="movieYear"  onChange={this.handleInput} placeholder="Add year" required/>
-        <input className="input" name="movieImg"   onChange={this.handleInput} placeholder="Add img url" required/>
-        <button type="submit">Confirm</button>
-      </form>
+      <div>
+        <button onClick={this.togle}>Add Movie</button>
+          <form onSubmit={this.addMovie} style={ visible ? {display:"block"} : {display:"none"} }>
+            <input  name="movieName"  onChange={this.handleInput} placeholder="Add title" required/>
+            <input  name="movieYear"  onChange={this.handleInput} placeholder="Add year" required/>
+            <input  name="movieImg"   onChange={this.handleInput} placeholder="Add img url" required/>
+            <input type="submit" value="Confirm"/>
+          </form>
+      </div>
     )
   }
 }
 
-export default AddMovie
+export default MiniAddMovie
