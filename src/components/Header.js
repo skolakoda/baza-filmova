@@ -13,7 +13,7 @@ class Header extends Component {
           <Link style={linkStyle} to='/'>Home</Link>{' '}
           <Link style={linkStyle} to='/add'>Add movie</Link>
         </nav>
-        <h1>Baza filmova</h1>
+        <h1>Baza filmova {this.props.counter}</h1>
       </header>
     )
   }
