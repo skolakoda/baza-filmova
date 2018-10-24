@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 class Footer extends Component {
   render() {
-    let {umanjenje,uvecanje} = this.props
-    const datum = new Date().toLocaleDateString('sr')
+    let { umanjenje, uvecanje } = this.props;
+    const datum = new Date().toLocaleDateString("sr");
 
     return (
       <footer>

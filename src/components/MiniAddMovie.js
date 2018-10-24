@@ -10,7 +10,7 @@ class MiniAddMovie extends Component {
   };
 
   togle = () => {
-    console.log("TOGLE")
+    console.log("TOGLE");
     this.setState({
       visible: !this.state.visible
     });
@@ -21,8 +21,8 @@ class MiniAddMovie extends Component {
     this.setState({
       [target.name]: target.value
     });
-    console.log("STATE",this.state)
-  }
+    console.log("STATE", this.state);
+  };
 
   addMovie = e => {
     e.preventDefault();
