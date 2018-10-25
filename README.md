@@ -9,6 +9,6 @@ npm start
 
 ## TODO
 
-- napraviti movie page, sa komentarima i dodavanjem komentara
-  - format je niz objekata `{user, comment}`
-- delete da bude x u uglu
+- implementirati ulogu admin
+  - da traži lozinku koju poredimo sa heširanom vrednošću
+  - delete da bude x u uglu, koje vide samo ulogovani

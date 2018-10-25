@@ -71,16 +71,14 @@ class Movies extends Component {
   }
 
   render() {
-    const filmoviJsx = this.state.filtered.map(film => {
-      const {naziv, godina, slika, _id} = film
-      return (
-        <Link key={_id} to={{ 
-            pathname:`/singlemovie/${naziv}`, 
-            state: {naziv, godina, slika, _id}}
-        }>
-          <Movie podaci={{naziv, godina, slika, _id}} />
+    const filmoviJsx = this.state.filtered.map(film => (
+        <Link key={film._id} to={{ 
+            pathname:`/singlemovie/${film.naziv}`, 
+            state: film
+        }}>
+          <Movie podaci={film} />
         </Link>
-    )})
+    ))
 
     return (
       <div>
