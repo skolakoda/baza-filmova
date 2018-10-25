@@ -49,7 +49,7 @@ class MiniAddMovie extends Component {
     let { visible } = this.state
     return (
       <div>
-        <button onClick={this.togle}>Add Movie</button>
+        <button onClick={this.togle}>Quick Add</button>
           <form onSubmit={this.addMovie} style={ visible ? {display:"block"} : {display:"none"} }>
             <input  name="movieName"  onChange={this.handleInput} placeholder="Add title" required/>
             <input  name="movieYear"  onChange={this.handleInput} placeholder="Add year" required/>
