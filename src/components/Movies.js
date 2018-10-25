@@ -65,39 +65,37 @@ class Movies extends Component {
     .then(response => response.json())
     .then(json => this.setState({
       filmovi: json,
-      filtered:json,
+      filtered: json,
       isLoaded: true
     }))
   }
 
   render() {
-    const filmoviJsx = this.state.filtered.map(film => (
-      <Link  to={{ pathname:`/singlemovie/${film.naziv}`,
-                 state: 
-                    { naziv: film.naziv,
-                      godina: film.godina,
-                      slika: film.slika,
-                      _id: film._id 
-                  }}}>
-      <Movie key={film._id} podaci={{
-        naziv: film.naziv,
-        godina: film.godina,
-        slika: film.slika,
-        _id: film._id,
-       }} />
-    </Link>
-    ))
+    const filmoviJsx = this.state.filtered.map(film => {
+      const {naziv, godina, slika, _id} = film
+      return (
+        <Link key={_id} to={{ 
+            pathname:`/singlemovie/${naziv}`, 
+            state: {naziv, godina, slika, _id}}
+        }>
+          <Movie podaci={{naziv, godina, slika, _id}} />
+        </Link>
+    )})
 
     return (
       <div>
         <MiniAddMovie/>
         <div>
-            <button onClick={this.sortByYearAsc}>Sort by year Asc</button>
-              <button onClick={this.sortByYearDesc}>Sort by year Desc</button>
-                <button onClick={this.sortAlpha}>Sort A-Z</button>
-                  <button onClick={this.sortAlphaZ}>Sort Z-A</button>
-                  </div>
-        <input  type="text" placeholder="Search for movie" onChange = {this.searchMovie}/>
+          <button onClick={this.sortByYearAsc}>Sort by year Asc</button>
+          <button onClick={this.sortByYearDesc}>Sort by year Desc</button>
+          <button onClick={this.sortAlpha}>Sort A-Z</button>
+          <button onClick={this.sortAlphaZ}>Sort Z-A</button>
+        </div>
+        <input  type="text" 
+          placeholder="Search for movie" 
+          onChange = {this.searchMovie}
+        />
+        
         <div className="movies-wrapper">
           {!this.state.isLoaded ? 'Učitava se...' : null}
           {filmoviJsx}
