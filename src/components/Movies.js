@@ -71,29 +71,20 @@ class Movies extends Component {
   }
 
   render() {
-    const filmoviJsx = this.state.filtered.map(film => (
-      <Link
-        to={{
-          pathname: `/singlemovie/${film.naziv}`,
-          state: {
-            naziv: film.naziv,
-            godina: film.godina,
-            slika: film.slika,
-            _id: film._id
-          }
-        }}
-      >
-        <Movie
-          key={film._id}
-          podaci={{
-            naziv: film.naziv,
-            godina: film.godina,
-            slika: film.slika,
-            _id: film._id
+    const filmoviJsx = this.state.filtered.map(film => {
+      const { naziv, godina, slika, _id } = film;
+      return (
+        <Link
+          key={_id}
+          to={{
+            pathname: `/singlemovie/${naziv}`,
+            state: { naziv, godina, slika, _id }
           }}
-        />
-      </Link>
-    ));
+        >
+          <Movie podaci={{ naziv, godina, slika, _id }} />
+        </Link>
+      );
+    });
 
     return (
       <div>
@@ -109,6 +100,7 @@ class Movies extends Component {
           placeholder="Search for movie"
           onChange={this.searchMovie}
         />
+
         <div className="movies-wrapper">
           {!this.state.isLoaded ? "Učitava se..." : null}
           {filmoviJsx}
