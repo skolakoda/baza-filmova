@@ -15,9 +15,11 @@ class Movie extends Component {
     return (
       <div>
         <h3>{naziv}</h3>
+        <div className="image-holder">
+        <span onClick={this.deleteMovie} className="delete-btn" title="Delete movie">X</span>
         <img src={slika} alt={naziv} />
+        </div>
         <p>{godina}</p>
-        <button onClick={this.deleteMovie}>Delete</button>
       </div>
     )
   }
