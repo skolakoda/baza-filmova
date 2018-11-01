@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/baza-filmova/static/js/runtime~main.ef3d0743.js"
   },
   {
-    "revision": "3dff17a65925121c0394",
-    "url": "/baza-filmova/static/js/main.3dff17a6.chunk.js"
+    "revision": "8e1af2ab51fb56bfd9f7",
+    "url": "/baza-filmova/static/js/main.8e1af2ab.chunk.js"
   },
   {
     "revision": "358972b388a43928bb8a",
     "url": "/baza-filmova/static/js/1.358972b3.chunk.js"
   },
   {
-    "revision": "3dff17a65925121c0394",
+    "revision": "8e1af2ab51fb56bfd9f7",
     "url": "/baza-filmova/static/css/main.f448eb88.chunk.css"
   },
   {
-    "revision": "f6c97c099820fce0d3152d5e15a9a27d",
+    "revision": "2ca511e2369248b5a17187d5e931c695",
     "url": "/baza-filmova/index.html"
   }
 ];
