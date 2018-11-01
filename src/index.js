@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 
 import './index.css';
 import App from './App';
 
+const basename = process.env.NODE_ENV === 'development' ? '' : 'programerski-citati'
+
 ReactDOM.render((
-  <BrowserRouter>
+  <Router basename={basename}>
     <App />
-  </BrowserRouter>
+  </Router>
 ), document.getElementById('root'))
