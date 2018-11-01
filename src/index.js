@@ -5,7 +5,7 @@ import { HashRouter as Router } from 'react-router-dom'
 import './index.css';
 import App from './App';
 
-const basename = process.env.NODE_ENV === 'development' ? '' : 'programerski-citati'
+const basename = process.env.NODE_ENV === 'development' ? '/' : '/baza-filmova'
 
 ReactDOM.render((
   <Router basename={basename}>
