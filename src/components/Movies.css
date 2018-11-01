@@ -7,3 +7,40 @@
 .movies-wrapper img {
   width: 200px;
 }
+
+.movies-wrapper a {
+  text-decoration: none;
+}
+
+.movies-wrapper h3 {
+  margin-bottom: 0;
+}
+
+.image-holder {
+  margin: 0 auto;
+  display: table;
+  position: relative;
+}
+
+.image-holder img {
+  float: right;
+}
+
+.delete-btn {
+  padding: 5px 13px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #000;
+  font-weight: normal;
+  border-radius: 2px;
+  font-size: 12px;
+  float: right;
+  position: absolute;
+  right: 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #f3f3f3;
+}
