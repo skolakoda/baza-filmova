@@ -1,6 +1,6 @@
 # Baza filmova
 
-Baza filmova, React aplikacija Škole koda.
+Baza filmova, pokazna React aplikacija Škole koda.
 
 Podatke vuče iz [baza-filmova-api](https://github.com/skolakoda/baza-filmova-api).
 
