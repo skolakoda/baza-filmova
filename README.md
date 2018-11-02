@@ -1,6 +1,12 @@
 # Baza filmova
 
-Prvo klonirate repo, pa onda:
+Baza filmova, React aplikacija Škole koda.
+
+Podatke vuče iz [baza-filmova-api](https://github.com/skolakoda/baza-filmova-api).
+
+## Pokretanje
+
+Prvo kloniraj repo, pa:
 
 ```
 npm i
