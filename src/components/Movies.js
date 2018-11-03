@@ -13,9 +13,7 @@ class Movies extends Component {
     filmovi: [],
     filtered: [],
     isLoaded: false,
-    password: "",
-    loggedIn: false,
-    message: ""
+    password: ""
   };
 
   sortByYearAsc = () => {
@@ -64,25 +62,26 @@ class Movies extends Component {
     });
   };
 
-  onPasswordChange = e => {
+  onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  onSubmitLogin = e => {
-    e.preventDefault();
+  onClickLogin = () => {
     if (md5(this.state.password) === "a66abb5684c45962d887564f08346e8d") {
-      this.setState({ loggedIn: true });
+      localStorage.setItem("loggedIn", "true");
       alert("Uspesno ste se ulogovali");
+      window.location.reload();
     } else {
       alert("Uneli ste pogresnu lozinku");
     }
   };
 
-  logout = e => {
-    this.setState({ loggedIn: false });
+  onClickLogout = () => {
+    localStorage.setItem("loggedIn", "false");
     alert("Izlogovali ste se");
+    window.location.reload();
   };
 
   componentDidMount() {
@@ -98,7 +97,12 @@ class Movies extends Component {
   }
 
   render() {
-    const { loggedIn } = this.state;
+    let loggedIn;
+    if (localStorage.getItem("loggedIn") === "true") {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
     const filmoviJsx = this.state.filtered.map(film => (
       <Link
         key={film._id}
@@ -114,17 +118,16 @@ class Movies extends Component {
     return (
       <div>
         {loggedIn ? (
-          <button onClick={this.logout}>Logout</button>
+          <button onClick={this.onClickLogout}>Logout</button>
         ) : (
-          <form onSubmit={this.onSubmitLogin}>
+          <React.Fragment>
             <input
               name="password"
-              type="text"
               placeholder="Enter password"
-              onChange={this.onPasswordChange}
+              onChange={this.onChange}
             />
-            <button type="submit">Login</button>
-          </form>
+            <button onClick={this.onClickLogin}>Login</button>
+          </React.Fragment>
         )}
         <MiniAddMovie />
         <div>
