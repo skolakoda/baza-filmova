@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { deleteUrl } from "../config/api";
+
 class Movie extends Component {
-  deleteMovie = () => {
+  deleteMovie = e => {
+    e.preventDefault();
     const { naziv, _id } = this.props.podaci;
     if (window.confirm(`Delete movie: "${naziv}" ?`)) {
-      fetch("https://baza-podataka.herokuapp.com/obrisi-film/" + _id);
-      alert("Movie deleted");
-      window.location.reload();
+      fetch(deleteUrl, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: _id })
+      })
+        .then(res => res.text())
+        .then(res => {
+          alert(res);
+          window.location.reload();
+        });
     }
   };
 

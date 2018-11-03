@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 
+import { getUrl } from "../config/api";
 import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
 import "./Movies.css";
@@ -83,7 +84,7 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    fetch("https://baza-podataka.herokuapp.com/filmovi/")
+    fetch(getUrl)
       .then(response => response.json())
       .then(json =>
         this.setState({
