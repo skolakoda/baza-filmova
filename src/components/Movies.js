@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { getUrl } from "../config/api";
 import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
+import md5 from "md5";
+
 import "./Movies.css";
 
 class Movies extends Component {
@@ -70,7 +72,7 @@ class Movies extends Component {
 
   onSubmitLogin = e => {
     e.preventDefault();
-    if (this.state.password === "admin123456") {
+    if (md5(this.state.password) === "a66abb5684c45962d887564f08346e8d") {
       this.setState({ loggedIn: true });
       alert("Uspesno ste se ulogovali");
     } else {
