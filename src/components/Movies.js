@@ -69,7 +69,7 @@ class Movies extends Component {
   };
 
   onClickLogin = () => {
-    if (md5(this.state.password) === "a66abb5684c45962d887564f08346e8d") {
+    if (md5(this.state.password) === "c93ccd78b2076528346216b3b2f701e6") {
       localStorage.setItem("loggedIn", "true");
       alert("Uspesno ste se ulogovali");
       window.location.reload();
@@ -107,7 +107,7 @@ class Movies extends Component {
       <Link
         key={film._id}
         to={{
-          pathname: `/singlemovie/${film.naziv}`,
+          pathname: `/singlemovie/${film._id}`,
           state: film
         }}
       >
