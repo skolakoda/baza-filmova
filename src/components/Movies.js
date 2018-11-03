@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
@@ -9,7 +9,10 @@ class Movies extends Component {
   state = {
     filmovi: [],
     filtered: [],
-    isLoaded: false
+    isLoaded: false,
+    password: "",
+    loggedIn: false,
+    message: ""
   };
 
   sortByYearAsc = () => {
@@ -58,6 +61,27 @@ class Movies extends Component {
     });
   };
 
+  onPasswordChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  onSubmitLogin = e => {
+    e.preventDefault();
+    if (this.state.password === "admin123456") {
+      this.setState({ loggedIn: true });
+      alert("Uspesno ste se ulogovali");
+    } else {
+      alert("Uneli ste pogresnu lozinku");
+    }
+  };
+
+  logout = e => {
+    this.setState({ loggedIn: false });
+    alert("Izlogovali ste se");
+  };
+
   componentDidMount() {
     fetch("https://baza-podataka.herokuapp.com/filmovi/")
       .then(response => response.json())
@@ -71,20 +95,34 @@ class Movies extends Component {
   }
 
   render() {
+    const { loggedIn } = this.state;
     const filmoviJsx = this.state.filtered.map(film => (
-      <Link
-        key={film._id}
-        to={{
-          pathname: `/singlemovie/${film.naziv}`,
-          state: film
-        }}
-      >
-        <Movie podaci={film} />
-      </Link>
+      // <Link
+      //   key={film._id}
+      //   to={{
+      //     pathname: `/singlemovie/${film.naziv}`,
+      //     state: film
+      //   }}
+      // >
+      <Movie key={film._id} podaci={film} loggedIn={loggedIn} />
+      // </Link>
     ));
 
     return (
       <div>
+        {loggedIn ? (
+          <button onClick={this.logout}>Logout</button>
+        ) : (
+          <form onSubmit={this.onSubmitLogin}>
+            <input
+              name="password"
+              type="text"
+              placeholder="Enter password"
+              onChange={this.onPasswordChange}
+            />
+            <button type="submit">Login</button>
+          </form>
+        )}
         <MiniAddMovie />
         <div>
           <button onClick={this.sortByYearAsc}>Sort by year Asc</button>
