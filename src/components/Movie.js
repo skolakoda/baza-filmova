@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { deleteUrl } from "../config/api";
 
@@ -22,19 +21,11 @@ class Movie extends Component {
   };
 
   render() {
-    const { id, naziv, godina, slika } = this.props.podaci;
+    const { naziv, godina, slika } = this.props.podaci;
     const loggedIn = this.props.loggedIn;
     return (
       <div>
-        <Link
-          key={id}
-          to={{
-            pathname: `/singlemovie/${naziv}`,
-            state: this.props.podaci
-          }}
-        >
-          <h3>{naziv}</h3>
-        </Link>
+        <h3>{naziv}</h3>
         <div className="image-holder">
           {loggedIn ? (
             <span

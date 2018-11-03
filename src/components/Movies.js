@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { getUrl } from "../config/api";
 import Movie from "./Movie";
@@ -98,15 +98,15 @@ class Movies extends Component {
   render() {
     const { loggedIn } = this.state;
     const filmoviJsx = this.state.filtered.map(film => (
-      // <Link
-      //   key={film._id}
-      //   to={{
-      //     pathname: `/singlemovie/${film.naziv}`,
-      //     state: film
-      //   }}
-      // >
-      <Movie key={film._id} podaci={film} loggedIn={loggedIn} />
-      // </Link>
+      <Link
+        key={film._id}
+        to={{
+          pathname: `/singlemovie/${film.naziv}`,
+          state: film
+        }}
+      >
+        <Movie key={film._id} podaci={film} loggedIn={loggedIn} />
+      </Link>
     ));
 
     return (
