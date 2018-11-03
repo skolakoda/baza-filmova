@@ -46,8 +46,3 @@ class Movie extends Component {
 }
 
 export default Movie;
-
-// TODO
-
-// md5 za pass
-// smestiti pass u local storage

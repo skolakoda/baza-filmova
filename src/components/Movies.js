@@ -111,7 +111,7 @@ class Movies extends Component {
           state: film
         }}
       >
-        <Movie key={film._id} podaci={film} loggedIn={loggedIn} />
+        <Movie podaci={film} loggedIn={loggedIn} />
       </Link>
     ));
 
