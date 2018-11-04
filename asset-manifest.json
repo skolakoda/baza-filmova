@@ -1,13 +1,13 @@
 {
-  "main.css": "/baza-filmova/static/css/main.9a0b50e7.chunk.css",
-  "main.js": "/baza-filmova/static/js/main.e9515b17.chunk.js",
-  "main.js.map": "/baza-filmova/static/js/main.e9515b17.chunk.js.map",
-  "static/js/1.358972b3.chunk.js": "/baza-filmova/static/js/1.358972b3.chunk.js",
-  "static/js/1.358972b3.chunk.js.map": "/baza-filmova/static/js/1.358972b3.chunk.js.map",
+  "main.css": "/baza-filmova/static/css/main.6614805f.chunk.css",
+  "main.js": "/baza-filmova/static/js/main.4252f184.chunk.js",
+  "main.js.map": "/baza-filmova/static/js/main.4252f184.chunk.js.map",
+  "static/js/1.7b68f238.chunk.js": "/baza-filmova/static/js/1.7b68f238.chunk.js",
+  "static/js/1.7b68f238.chunk.js.map": "/baza-filmova/static/js/1.7b68f238.chunk.js.map",
   "runtime~main.js": "/baza-filmova/static/js/runtime~main.ef3d0743.js",
   "runtime~main.js.map": "/baza-filmova/static/js/runtime~main.ef3d0743.js.map",
-  "static/css/main.9a0b50e7.chunk.css.map": "/baza-filmova/static/css/main.9a0b50e7.chunk.css.map",
+  "static/css/main.6614805f.chunk.css.map": "/baza-filmova/static/css/main.6614805f.chunk.css.map",
   "index.html": "/baza-filmova/index.html",
-  "precache-manifest.84ebc9a110be563c73101f2ffffd9b09.js": "/baza-filmova/precache-manifest.84ebc9a110be563c73101f2ffffd9b09.js",
+  "precache-manifest.453eb775600512bc15bb69279a98b6f8.js": "/baza-filmova/precache-manifest.453eb775600512bc15bb69279a98b6f8.js",
   "service-worker.js": "/baza-filmova/service-worker.js"
 }
