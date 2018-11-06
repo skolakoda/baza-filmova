@@ -69,7 +69,7 @@ class Movies extends Component {
   };
 
   onClickLogin = () => {
-    if (md5(this.state.password) === "c93ccd78b2076528346216b3b2f701e6") {
+    if (md5(this.state.password) === "8fa0999540532f709fafa537818c17f1") {
       localStorage.setItem("loggedIn", "true");
       alert("Uspesno ste se ulogovali");
       window.location.reload();
