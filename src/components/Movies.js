@@ -7,55 +7,20 @@ import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
 import md5 from "md5";
 
-import {setFilmovi, setFiltered, setPassword, fetchSuccess} from '../store'
+import {setFilmovi, setFiltered, setPassword, fetchSuccess, sortByYearDesc, sortByYearAsc, sortAlpha, sortAlphaZ, searchMovie} from '../store'
 import "./Movies.css";
 
 class Movies extends Component {
 
-  sortByYearAsc = () => {
-    let arr = [...this.props.filmovi].sort((a, b) => {
-      return a.godina - b.godina;
-    });
-    this.props.setFiltered(arr);
-  };
-
-  sortByYearDesc = () => {
-    let arr = [...this.props.filmovi].sort((a, b) => {
-      return b.godina - a.godina;
-    });
-    this.props.setFiltered(arr);
-  };
-
-  sortAlpha = () => {
-    let arr = [...this.props.filmovi].sort((a, b) => {
-      var x = a.naziv.toLowerCase();
-      var y = b.naziv.toLowerCase();
-      if (x < y) return -1;
-      if (x > y) return 1;
-      return 0;
-    });
-    this.props.setFiltered(arr);
-  };
-
-  sortAlphaZ = () => {
-    let arr = [...this.props.filmovi].sort((a, b) => {
-      var x = a.naziv.toLowerCase();
-      var y = b.naziv.toLowerCase();
-      if (y < x) return -1;
-      if (y > x) return 1;
-      return 0;
-    });
-    this.props.setFiltered(arr);
-  };
-
-  searchMovie = event => {
-    let filtered = [...this.props.filmovi].filter(movie => {
-      return (
-        movie.naziv.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1
-      );
-    });
-    this.props.setFiltered(filtered);
-  };
+  componentDidMount() {
+    fetch(getUrl)
+      .then(response => response.json())
+      .then(json => {
+        this.props.setFiltered(json);
+        this.props.setFilmovi(json);
+        this.props.fetchSuccess();
+      });
+  }
 
   handleChange = e => {
     this.props.setPassword(e.target.value);
@@ -77,23 +42,8 @@ class Movies extends Component {
     window.location.reload();
   };
 
-  componentDidMount() {
-    fetch(getUrl)
-      .then(response => response.json())
-      .then(json => {
-        this.props.setFiltered(json);
-        this.props.setFilmovi(json);
-        this.props.fetchSuccess();
-      });
-  }
-
   render() {
-    let loggedIn;
-    if (localStorage.getItem("loggedIn") === "true") {
-      loggedIn = true;
-    } else {
-      loggedIn = false;
-    }
+    let loggedIn = localStorage.getItem("loggedIn") === "true"
     const filmoviJsx = this.props.filtered.map(film => (
       <Link
         key={film._id}
@@ -113,7 +63,7 @@ class Movies extends Component {
         ) : (
           <React.Fragment>
             <input
-              name="password"
+              type="password"
               placeholder="Enter password"
               onChange={this.handleChange}
             />
@@ -122,15 +72,15 @@ class Movies extends Component {
         )}
         <MiniAddMovie />
         <div>
-          <button onClick={this.sortByYearAsc}>Sort by year Asc</button>
-          <button onClick={this.sortByYearDesc}>Sort by year Desc</button>
-          <button onClick={this.sortAlpha}>Sort A-Z</button>
-          <button onClick={this.sortAlphaZ}>Sort Z-A</button>
+          <button onClick={this.props.sortByYearAsc}>Sort by year Asc</button>
+          <button onClick={this.props.sortByYearDesc}>Sort by year Desc</button>
+          <button onClick={this.props.sortAlpha}>Sort A-Z</button>
+          <button onClick={this.props.sortAlphaZ}>Sort Z-A</button>
         </div>
         <input
           type="text"
           placeholder="Search for movie"
-          onChange={this.searchMovie}
+          onChange={e => this.props.searchMovie(e.target.value)}
         />
 
         <div className="movies-wrapper">
@@ -144,7 +94,6 @@ class Movies extends Component {
 
 function mapStateToProps(state) {
   return {
-    filmovi: state.filmovi,
     filtered: state.filtered,
     isLoaded: state.isLoaded,
     password: state.password,
@@ -155,7 +104,12 @@ const mapDispatchToProps = {
   setFilmovi, 
   setFiltered, 
   setPassword, 
-  fetchSuccess
+  fetchSuccess,
+  sortByYearDesc,
+  sortByYearAsc,
+  sortAlpha,
+  sortAlphaZ,
+  searchMovie,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies)
