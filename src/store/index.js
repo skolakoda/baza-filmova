@@ -19,3 +19,24 @@ export const reducer = (state = initialState, action) => {
       return state
   }
 }
+
+/* ACTION CREATORS */
+
+export const setFilmovi = payload => ({
+  type: 'SET_FILMOVI',
+  payload
+})
+
+export const setFiltered = payload => ({
+  type: 'SET_FILTERED',
+  payload
+})
+
+export const setPassword = payload => ({
+  type: 'SET_PASSWORD',
+  payload
+})
+
+export const fetchSuccess = () => ({
+  type: 'FETCH_SUCCESS',
+})

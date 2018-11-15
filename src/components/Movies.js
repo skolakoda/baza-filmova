@@ -1,76 +1,68 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux"
 
 import { getUrl } from "../config/api";
 import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
 import md5 from "md5";
 
+import {setFilmovi, setFiltered, setPassword, fetchSuccess} from '../store'
 import "./Movies.css";
 
 class Movies extends Component {
-  state = {
-    filmovi: [],
-    filtered: [],
-    isLoaded: false,
-    password: ""
-  };
 
   sortByYearAsc = () => {
-    let arr = this.state.filmovi.sort((a, b) => {
+    let arr = [...this.props.filmovi].sort((a, b) => {
       return a.godina - b.godina;
     });
-    this.setState({ filmovi: arr });
+    this.props.setFiltered(arr);
   };
 
   sortByYearDesc = () => {
-    let arr = this.state.filmovi.sort((a, b) => {
+    let arr = [...this.props.filmovi].sort((a, b) => {
       return b.godina - a.godina;
     });
-    this.setState({ filmovi: arr });
+    this.props.setFiltered(arr);
   };
 
   sortAlpha = () => {
-    let arr = this.state.filmovi.sort((a, b) => {
+    let arr = [...this.props.filmovi].sort((a, b) => {
       var x = a.naziv.toLowerCase();
       var y = b.naziv.toLowerCase();
       if (x < y) return -1;
       if (x > y) return 1;
       return 0;
     });
-    this.setState({ filtered: arr });
+    this.props.setFiltered(arr);
   };
+
   sortAlphaZ = () => {
-    let arr = this.state.filmovi.sort((a, b) => {
+    let arr = [...this.props.filmovi].sort((a, b) => {
       var x = a.naziv.toLowerCase();
       var y = b.naziv.toLowerCase();
       if (y < x) return -1;
       if (y > x) return 1;
       return 0;
     });
-
-    this.setState({ filtered: arr });
+    this.props.setFiltered(arr);
   };
+
   searchMovie = event => {
-    let filtered = this.state.filmovi.filter(movie => {
+    let filtered = [...this.props.filmovi].filter(movie => {
       return (
         movie.naziv.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1
       );
     });
-    this.setState({
-      filtered
-    });
+    this.props.setFiltered(filtered);
   };
 
   handleChange = e => {
-    // akcija za pasword
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    this.props.setPassword(e.target.value);
   };
 
   onClickLogin = () => {
-    if (md5(this.state.password) === "8fa0999540532f709fafa537818c17f1") {
+    if (md5(this.props.password) === "8fa0999540532f709fafa537818c17f1") {
       localStorage.setItem("loggedIn", "true");
       alert("Uspesno ste se ulogovali");
       window.location.reload();
@@ -88,13 +80,11 @@ class Movies extends Component {
   componentDidMount() {
     fetch(getUrl)
       .then(response => response.json())
-      .then(json =>
-        this.setState({
-          filmovi: json,
-          filtered: json,
-          isLoaded: true
-        })
-      );
+      .then(json => {
+        this.props.setFiltered(json);
+        this.props.setFilmovi(json);
+        this.props.fetchSuccess();
+      });
   }
 
   render() {
@@ -104,7 +94,7 @@ class Movies extends Component {
     } else {
       loggedIn = false;
     }
-    const filmoviJsx = this.state.filtered.map(film => (
+    const filmoviJsx = this.props.filtered.map(film => (
       <Link
         key={film._id}
         to={{
@@ -144,7 +134,7 @@ class Movies extends Component {
         />
 
         <div className="movies-wrapper">
-          {!this.state.isLoaded ? "Učitava se..." : null}
+          {!this.props.isLoaded ? "Učitava se..." : null}
           {filmoviJsx}
         </div>
       </div>
@@ -152,4 +142,20 @@ class Movies extends Component {
   }
 }
 
-export default Movies;
+function mapStateToProps(state) {
+  return {
+    filmovi: state.filmovi,
+    filtered: state.filtered,
+    isLoaded: state.isLoaded,
+    password: state.password,
+  }
+}
+
+const mapDispatchToProps = {
+  setFilmovi, 
+  setFiltered, 
+  setPassword, 
+  fetchSuccess
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movies)
