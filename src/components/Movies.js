@@ -62,7 +62,7 @@ class Movies extends Component {
     });
   };
 
-  onChange = e => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -124,7 +124,7 @@ class Movies extends Component {
             <input
               name="password"
               placeholder="Enter password"
-              onChange={this.onChange}
+              onChange={this.handleChange}
             />
             <button onClick={this.onClickLogin}>Login</button>
           </React.Fragment>
