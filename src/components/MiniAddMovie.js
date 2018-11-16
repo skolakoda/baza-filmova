@@ -12,7 +12,6 @@ class MiniAddMovie extends Component {
   };
 
   togle = () => {
-    console.log("TOGLE");
     this.setState({
       visible: !this.state.visible
     });
