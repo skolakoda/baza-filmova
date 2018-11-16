@@ -1,6 +1,8 @@
+import { List } from 'immutable'
+
 const initialState = {
-  filmovi: [],
-  filtered: [],
+  filmovi: List(),
+  filtered: List(),
   isLoaded: false,
   password: ""
 }
@@ -8,27 +10,27 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch(action.type) {
     case 'SET_FILMOVI':
-      return {...state, filmovi: action.payload}
+      return {...state, filmovi: List(action.filmovi)}
     case 'SET_FILTERED':
-      return {...state, filtered: action.payload}
+      return {...state, filtered: List(action.filtered)}
     case 'FETCH_SUCCESS':
       return {...state, isLoaded: true}
     case 'SET_PASSWORD':
-      return {...state, password: action.payload}
-    case 'SORT_BY_YEAR_DESC': {
-        const filtered = [...state.filtered].sort(
-          (a, b) => b.godina - a.godina
-        )
-        return {...state, filtered }
-      }
+      return {...state, password: action.password}
     case 'SORT_BY_YEAR_ASC': {
-      const filtered = [...state.filtered].sort(
+      const filtered = state.filtered.sort(
         (a, b) => a.godina - b.godina
       )
       return {...state, filtered }
     }
+    case 'SORT_BY_YEAR_DESC': {
+      const filtered = state.filtered.sort(
+        (a, b) => b.godina - a.godina
+      )
+      return {...state, filtered }
+    }
     case 'SORT_ALPHA': {
-      const filtered = [...state.filtered].sort((a, b) => {
+      const filtered = state.filtered.sort((a, b) => {
         var x = a.naziv.toLowerCase();
         var y = b.naziv.toLowerCase();
         if (x < y) return -1;
@@ -38,7 +40,7 @@ export const reducer = (state = initialState, action) => {
       return {...state, filtered }
     }
     case 'SORT_ALPHA_Z': {
-      const filtered = [...state.filtered].sort((a, b) => {
+      const filtered = state.filtered.sort((a, b) => {
         var x = a.naziv.toLowerCase();
         var y = b.naziv.toLowerCase();
         if (y < x) return -1;
@@ -57,45 +59,3 @@ export const reducer = (state = initialState, action) => {
       return state
   }
 }
-
-/* ACTION CREATORS */
-
-export const searchMovie = fraza => ({
-  type: 'SEARCH_MOVIE',
-  fraza
-})
-
-export const sortAlphaZ = () => ({
-  type: 'SORT_ALPHA_Z'
-})
-
-export const sortAlpha = () => ({
-  type: 'SORT_ALPHA'
-})
-
-export const sortByYearAsc = () => ({
-  type: 'SORT_BY_YEAR_ASC'
-})
-
-export const sortByYearDesc = () => ({
-  type: 'SORT_BY_YEAR_DESC'
-})
-
-export const setFilmovi = payload => ({
-  type: 'SET_FILMOVI',
-  payload
-})
-
-export const setFiltered = payload => ({
-  type: 'SET_FILTERED',
-  payload
-})
-
-export const setPassword = payload => ({
-  type: 'SET_PASSWORD',
-  payload
-})
-
-export const fetchSuccess = () => ({
-  type: 'FETCH_SUCCESS',
-})

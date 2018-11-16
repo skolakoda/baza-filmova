@@ -7,7 +7,7 @@ import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
 import md5 from "md5";
 
-import {setFilmovi, setFiltered, setPassword, fetchSuccess, sortByYearDesc, sortByYearAsc, sortAlpha, sortAlphaZ, searchMovie} from '../store'
+import {setFilmovi, setFiltered, setPassword, fetchSuccess, sortByYearDesc, sortByYearAsc, sortAlpha, sortAlphaZ, searchMovie} from '../store/actions'
 import "./Movies.css";
 
 class Movies extends Component {
