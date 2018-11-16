@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import { List } from 'immutable';
+import md5 from "md5";
 
 import { getUrl } from "../config/api";
 import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
-import md5 from "md5";
-
-import {setFilmovi, setFiltered, setPassword, fetchSuccess, sortByYearDesc, sortByYearAsc, sortAlpha, sortAlphaZ, searchMovie} from '../store'
+import {setFilmovi, setFiltered, setPassword, fetchSuccess, sortByYearDesc, sortByYearAsc, sortAlpha, sortAlphaZ, searchMovie} from '../store/actions';
 import "./Movies.css";
 
 class Movies extends Component {
@@ -15,9 +15,9 @@ class Movies extends Component {
   componentDidMount() {
     fetch(getUrl)
       .then(response => response.json())
-      .then(json => {
-        this.props.setFiltered(json);
-        this.props.setFilmovi(json);
+      .then(filmovi => {
+        this.props.setFiltered(List(filmovi));
+        this.props.setFilmovi(List(filmovi));
         this.props.fetchSuccess();
       });
   }
@@ -94,9 +94,9 @@ class Movies extends Component {
 
 function mapStateToProps(state) {
   return {
-    filtered: state.filtered,
-    isLoaded: state.isLoaded,
-    password: state.password,
+    filtered: state.get('filtered'),
+    isLoaded: state.get('isLoaded'),
+    password: state.get('password'),
   }
 }
 
