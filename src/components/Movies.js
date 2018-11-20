@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { List } from 'immutable';
-
+import { List } from "immutable";
+import Filter from "./Filter";
 import { getUrl } from "../config/api";
 import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
-import {setFilmovi, setFiltered, setPassword, fetchSuccess, sortByYearDesc, sortByYearAsc, sortAlpha, sortAlphaZ, searchMovie} from '../store/actions';
+import {
+  setFilmovi,
+  setFiltered,
+  setPassword,
+  fetchSuccess
+} from "../store/actions";
 import "./Movies.css";
 
 class Movies extends Component {
-
   componentDidMount() {
     fetch(getUrl)
       .then(response => response.json())
@@ -37,17 +41,7 @@ class Movies extends Component {
     return (
       <div>
         <MiniAddMovie />
-        <div>
-          <button onClick={this.props.sortByYearAsc}>Sort by year Asc</button>
-          <button onClick={this.props.sortByYearDesc}>Sort by year Desc</button>
-          <button onClick={this.props.sortAlpha}>Sort A-Z</button>
-          <button onClick={this.props.sortAlphaZ}>Sort Z-A</button>
-        </div>
-        <input
-          type="text"
-          placeholder="Search for movie"
-          onChange={e => this.props.searchMovie(e.target.value)}
-        />
+        <Filter />
 
         <div className="movies-wrapper">
           {!this.props.isLoaded ? "Učitava se..." : null}
@@ -60,21 +54,19 @@ class Movies extends Component {
 
 function mapStateToProps(state) {
   return {
-    filtered: state.get('filtered'),
-    isLoaded: state.get('isLoaded'),
-  }
+    filtered: state.get("filtered"),
+    isLoaded: state.get("isLoaded")
+  };
 }
 
 const mapDispatchToProps = {
-  setFilmovi, 
-  setFiltered, 
-  setPassword, 
-  fetchSuccess,
-  sortByYearDesc,
-  sortByYearAsc,
-  sortAlpha,
-  sortAlphaZ,
-  searchMovie,
-}
+  setFilmovi,
+  setFiltered,
+  setPassword,
+  fetchSuccess
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Movies)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Movies);
