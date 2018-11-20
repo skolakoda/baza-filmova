@@ -11,7 +11,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Main />
-        <Footer umanjenje={this.counterMin} uvecanje={this.counterMax} />
+        <Footer />
       </div>
     );
   }

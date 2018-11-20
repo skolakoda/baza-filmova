@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { List } from 'immutable';
-import md5 from "md5";
 
 import { getUrl } from "../config/api";
 import Movie from "./Movie";
@@ -22,28 +21,7 @@ class Movies extends Component {
       });
   }
 
-  handleChange = e => {
-    this.props.setPassword(e.target.value);
-  };
-
-  onClickLogin = () => {
-    if (md5(this.props.password) === "8fa0999540532f709fafa537818c17f1") {
-      localStorage.setItem("loggedIn", "true");
-      alert("Uspesno ste se ulogovali");
-      window.location.reload();
-    } else {
-      alert("Uneli ste pogresnu lozinku");
-    }
-  };
-
-  onClickLogout = () => {
-    localStorage.setItem("loggedIn", "false");
-    alert("Izlogovali ste se");
-    window.location.reload();
-  };
-
   render() {
-    let loggedIn = localStorage.getItem("loggedIn") === "true"
     const filmoviJsx = this.props.filtered.map(film => (
       <Link
         key={film._id}
@@ -52,24 +30,12 @@ class Movies extends Component {
           state: film
         }}
       >
-        <Movie podaci={film} loggedIn={loggedIn} />
+        <Movie podaci={film} />
       </Link>
     ));
 
     return (
       <div>
-        {loggedIn ? (
-          <button onClick={this.onClickLogout}>Logout</button>
-        ) : (
-          <React.Fragment>
-            <input
-              type="password"
-              placeholder="Enter password"
-              onChange={this.handleChange}
-            />
-            <button onClick={this.onClickLogin}>Login</button>
-          </React.Fragment>
-        )}
         <MiniAddMovie />
         <div>
           <button onClick={this.props.sortByYearAsc}>Sort by year Asc</button>
@@ -96,7 +62,6 @@ function mapStateToProps(state) {
   return {
     filtered: state.get('filtered'),
     isLoaded: state.get('isLoaded'),
-    password: state.get('password'),
   }
 }
 

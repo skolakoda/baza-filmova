@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { deleteUrl } from "../config/api";
 
 class Movie extends Component {
+
   deleteMovie = e => {
     e.preventDefault();
     const { naziv, _id } = this.props.podaci;
@@ -22,7 +23,7 @@ class Movie extends Component {
 
   render() {
     const { naziv, godina, slika } = this.props.podaci;
-    const loggedIn = this.props.loggedIn;
+    const loggedIn = localStorage.getItem("loggedIn") === "true"
     return (
       <div>
         <h3>{naziv}</h3>
