@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+
+import addMovie from '../shared/addMovie'
 import './Movies.css';
 
 class MiniAddMovie extends Component {
@@ -26,23 +28,7 @@ class MiniAddMovie extends Component {
 
   addMovie = e => {
     e.preventDefault()
-    fetch('https://baza-podataka.herokuapp.com/dodaj-film/', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        naziv: this.state.movieName, 
-        godina: this.state.movieYear, 
-        slika: this.state.movieImg
-      })
-    })
-    .then(res => {
-      alert(`Movie " ${this.state.movieName.toUpperCase()}" has been updated to movie base. Thank you for updating!`)
-      window.location.reload()
-    })
-    .catch(e => alert('Došlo je do greške'))
+    addMovie(this.state.movieName, this.state.movieYear, this.state.movieImg)
   }
 
   render() {
