@@ -1,5 +1,7 @@
+import {postUrl} from '../config/api'
+
 export default function addMovie(naziv, godina, slika, comments = null) {
-  fetch('https://baza-podataka.herokuapp.com/dodaj-film/', {
+  fetch(postUrl, {
     method: 'post',
     headers: {
       'Accept': 'application/json, text/plain, */*',
