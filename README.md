@@ -19,3 +19,4 @@ npm start
 - implementirati websocket
 - implementirati redux
   - uklanjati iz stanja obrisane filmove umesto refresh
+- srediti css
