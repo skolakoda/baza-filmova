@@ -15,9 +15,6 @@ npm start
 
 ## TODO
 
-- vratiti rutu da bude naziv filma?
 - implementirati websocket
-- implementirati redux
-  - uklanjati iz stanja obrisane filmove umesto refresh
 - srediti css
 - srediti da ne puca single movie ruta nakon reload-a
