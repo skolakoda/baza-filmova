@@ -9,8 +9,8 @@ import {
   setFilmovi,
   setFiltered,
   setPassword,
-  fetchSuccess,
-  fetchMovies
+  fetchSuccess
+  // fetchMovies
 } from "../store/actions";
 import "./Movies.css";
 
@@ -57,8 +57,8 @@ const mapDispatchToProps = {
   setFilmovi,
   setFiltered,
   setPassword,
-  fetchSuccess,
-  fetchMovies
+  fetchSuccess
+  // fetchMovies
 };
 
 export default connect(
