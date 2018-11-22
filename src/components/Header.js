@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import Login from './Login'
+
 const linkStyle = {
   color: "white"
 };
@@ -17,6 +19,7 @@ class Header extends Component {
             Add movie
           </Link>
         </nav>
+        <Login/>
         <h1>Baza filmova</h1>
       </header>
     );

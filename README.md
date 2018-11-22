@@ -15,8 +15,7 @@ npm start
 
 ## TODO
 
-- da polje za lozinku bude tipa password
-- vratiti rutu da bude naziv filma
+- vratiti rutu da bude naziv filma?
 - implementirati websocket
 - implementirati redux
   - uklanjati iz stanja obrisane filmove umesto refresh
