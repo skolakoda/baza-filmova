@@ -24,7 +24,7 @@ class Movies extends Component {
       <Link
         key={film._id}
         to={{
-          pathname: `/singlemovie/${film._id}`,
+          pathname: `/singlemovie/${film.naziv.replace(/ /g, "_")}`,
           state: film
         }}
       >
