@@ -15,9 +15,9 @@ import {
 import "./Movies.css";
 
 class Movies extends Component {
-  componentDidMount() {
-    this.props.fetchMovies();
-  }
+  // componentDidMount() {
+  //   this.props.fetchMovies();
+  // }
 
   render() {
     const filmoviJsx = this.props.filtered.map(film => (
