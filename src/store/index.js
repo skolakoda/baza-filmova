@@ -1,11 +1,11 @@
-import { List, Map } from 'immutable'
+import { List, Map } from "immutable";
 
 const initialState = Map({
   filmovi: List(),
   filtered: List(),
   isLoaded: false,
   password: ""
-})
+});
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -27,31 +27,31 @@ export const reducer = (state = initialState, action) => {
       )
       return state.set('filtered', filtered)
     }
-    case 'SORT_BY_YEAR_DESC': {
-      const filtered = state.get('filtered').sort(
-        (a, b) => b.godina - a.godina
-      )
-      return state.set('filtered', filtered)
+    case "SORT_BY_YEAR_DESC": {
+      const filtered = state
+        .get("filtered")
+        .sort((a, b) => b.godina - a.godina);
+      return state.set("filtered", filtered);
     }
-    case 'SORT_ALPHA': {
-      const filtered = state.get('filtered').sort((a, b) => {
+    case "SORT_ALPHA": {
+      const filtered = state.get("filtered").sort((a, b) => {
         var x = a.naziv.toLowerCase();
         var y = b.naziv.toLowerCase();
         if (x < y) return -1;
         if (x > y) return 1;
         return 0;
-      })
-      return state.set('filtered', filtered)
+      });
+      return state.set("filtered", filtered);
     }
-    case 'SORT_ALPHA_Z': {
-      const filtered = state.get('filtered').sort((a, b) => {
+    case "SORT_ALPHA_Z": {
+      const filtered = state.get("filtered").sort((a, b) => {
         var x = a.naziv.toLowerCase();
         var y = b.naziv.toLowerCase();
         if (y < x) return -1;
         if (y > x) return 1;
         return 0;
-      })
-      return state.set('filtered', filtered)
+      });
+      return state.set("filtered", filtered);
     }
     case 'SEARCH_MOVIE': {
       const filtered = state.get('filmovi').filter(film =>
@@ -64,6 +64,6 @@ export const reducer = (state = initialState, action) => {
       return state.set('filtered', noviFilmovi).set('filmovi', noviFilmovi)
     }
     default:
-      return state
+      return state;
   }
-}
+};
