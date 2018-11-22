@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { deleteUrl } from "../config/api";
+import { deleteMovie } from "../store/actions";
 
 class Movie extends Component {
 
@@ -16,7 +18,7 @@ class Movie extends Component {
         .then(res => res.text())
         .then(res => {
           alert(res);
-          window.location.reload();
+          this.props.deleteMovie(_id);
         });
     }
   };
@@ -46,4 +48,9 @@ class Movie extends Component {
   }
 }
 
-export default Movie;
+const mapDispatchToProps = { deleteMovie };
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Movie);

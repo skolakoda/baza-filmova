@@ -51,6 +51,11 @@ export const searchMovie = fraza => ({
   fraza
 })
 
+export const deleteMovie = id => ({
+  type: 'DELETE_MOVIE',
+  id
+})
+
 /* ASYNC ACIONTS */
 
 export const fetchMovies = () => dispatch => {

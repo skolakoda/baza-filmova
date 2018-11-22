@@ -8,7 +8,7 @@ const initialState = Map({
 })
 
 export const reducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'SET_FILMOVI':
       return state.set('filmovi', action.filmovi)
     case 'SET_FILTERED':
@@ -54,10 +54,14 @@ export const reducer = (state = initialState, action) => {
       return state.set('filtered', filtered)
     }
     case 'SEARCH_MOVIE': {
-      const filtered = state.get('filmovi').filter(film => 
+      const filtered = state.get('filmovi').filter(film =>
         film.naziv.toLowerCase().includes(action.fraza.toLowerCase())
       )
       return state.set('filtered', filtered)
+    }
+    case 'DELETE_MOVIE': {
+      const noviFilmovi = state.get('filmovi').filter(film => film._id !== action.id)
+      return state.set('filtered', noviFilmovi).set('filmovi', noviFilmovi)
     }
     default:
       return state
