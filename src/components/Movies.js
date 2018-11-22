@@ -14,6 +14,7 @@ import {
   sortAlphaZ,
   searchMovie
 } from "../store/index";
+
 import { getUrl } from "../config/api";
 import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
@@ -175,7 +176,7 @@ class Movies extends Component {
 
 function mapStateToProps(state) {
   return {
-    filmovi: state.filmovi,
+    // filmovi: state.filmovi,
     filtered: state.filtered,
     isLoaded: state.isLoaded,
     password: state.password

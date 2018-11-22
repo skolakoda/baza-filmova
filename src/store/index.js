@@ -5,28 +5,36 @@ const initialState = {
   password: ""
 };
 
+// REDUCER
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_FILMOVI":
       return { ...state, filmovi: action.payload };
+
     case "SET_FILTERED":
       return { ...state, filtered: action.payload };
+
     case "FETCH_SUCCESS":
       return { ...state, isLoaded: true };
+
     case "SET_PASSWORD":
       return { ...state, password: action.payload };
+
     case "SORT_BY_YEAR_ASC": {
       const filtered = [...state.filtered].sort((a, b) => {
         return a.godina - b.godina;
       });
       return { ...state, filtered: filtered };
     }
+
     case "SORT_BY_YEAR_DESC": {
       const filtered = [...state.filtered].sort((a, b) => {
         return b.godina - a.godina;
       });
       return { ...state, filtered: filtered };
     }
+
     case "SORT_ALPHA": {
       let filtered = [...state.filtered].sort((a, b) => {
         var x = a.naziv.toLowerCase();
@@ -37,6 +45,7 @@ export const reducer = (state = initialState, action) => {
       });
       return { ...state, filtered: filtered };
     }
+
     case "SORT_ALPHA_Z": {
       let filtered = [...state.filtered].sort((a, b) => {
         var x = a.naziv.toLowerCase();
@@ -47,6 +56,7 @@ export const reducer = (state = initialState, action) => {
       });
       return { ...state, filtered: filtered };
     }
+
     case "SEARCH_MOVIE": {
       let filtered = state.filmovi.filter(movie => {
         return movie.naziv.toLowerCase().includes(action.fraza);
@@ -58,6 +68,8 @@ export const reducer = (state = initialState, action) => {
   }
 };
 
+// ACTION CREATORS
+
 export const setFilmovi = payload => ({
   type: "SET_FILMOVI",
   payload
@@ -68,9 +80,8 @@ export const setFiltered = payload => ({
   payload
 });
 
-export const fetchSuccess = payload => ({
-  type: "FETCH_SUCCESS",
-  payload
+export const fetchSuccess = () => ({
+  type: "FETCH_SUCCESS"
 });
 
 export const setPassword = payload => ({
