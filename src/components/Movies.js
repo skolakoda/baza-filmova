@@ -16,7 +16,7 @@ import "./Movies.css";
 
 class Movies extends Component {
   componentDidMount() {
-    this.props.fetchMovies()
+    this.props.fetchMovies();
   }
 
   render() {
@@ -24,7 +24,7 @@ class Movies extends Component {
       <Link
         key={film._id}
         to={{
-          pathname: `/singlemovie/${film._id}`,
+          pathname: `/movie/${film.naziv.replace(/ /g, "_")}`,
           state: film
         }}
       >
