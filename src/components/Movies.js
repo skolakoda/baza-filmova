@@ -5,20 +5,9 @@ import Filter from "./Filter";
 
 import Movie from "./Movie";
 import MiniAddMovie from "./MiniAddMovie";
-import {
-  setFilmovi,
-  setFiltered,
-  setPassword,
-  fetchSuccess
-  // fetchMovies
-} from "../store/actions";
 import "./Movies.css";
 
 class Movies extends Component {
-  // componentDidMount() {
-  //   this.props.fetchMovies();
-  // }
-
   render() {
     const filmoviJsx = this.props.filtered.map(film => (
       <Link
@@ -53,15 +42,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-  setFilmovi,
-  setFiltered,
-  setPassword,
-  fetchSuccess
-  // fetchMovies
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Movies);
