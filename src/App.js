@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { withRouter } from "react-router";
 import { fetchMovies } from "./store/actions";
 
 import "./App.css";
@@ -27,7 +28,9 @@ const mapDispatchToProps = {
   fetchMovies
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(App);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(App)
+);
