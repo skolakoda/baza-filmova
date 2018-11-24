@@ -6,37 +6,52 @@ import Movie from "./Movie";
 import addMovie from "../shared/addMovie";
 
 class SingleMovie extends Component {
-  // state = {};
-
   handleSubmit = e => {
     e.preventDefault();
 
-    let foo = this.props.filmovi.filter(film => {
-      return film.naziv === this.props.match.params.naziv.replace(/_/g, " ");
-    });
-    const movie = foo.get(0);
+    let movie;
 
-    const { naziv, godina, slika, comments } = movie;
+    if (!this.props.filmovi.isEmpty()) {
+      movie = this.props.filmovi
+        .filter(film => {
+          return (
+            film.naziv === this.props.match.params.naziv.replace(/_/g, " ")
+          );
+        })
+        .get(0);
+    }
+
+    let naziv, godina, slika, comments;
+
+    if (movie && Object.keys(movie.length !== 0)) {
+      naziv = movie.naziv;
+      godina = movie.godina;
+      slika = movie.slika;
+      comments = movie.comments;
+    }
 
     const noviKomentar = {
       user: e.target.ime.value,
       comment: e.target.komentar.value
     };
-    console.log(comments);
-    console.log(noviKomentar);
 
     const komentari = comments ? [...comments, noviKomentar] : [noviKomentar];
-    console.log(komentari);
 
     addMovie(naziv, godina, slika, komentari);
   };
 
   render() {
-    let foo = this.props.filmovi.filter(film => {
-      return film.naziv === this.props.match.params.naziv.replace(/_/g, " ");
-    });
-    // console.log(foo.get(0));
-    const movie = foo.get(0);
+    let movie;
+
+    if (!this.props.filmovi.isEmpty()) {
+      movie = this.props.filmovi
+        .filter(film => {
+          return (
+            film.naziv === this.props.match.params.naziv.replace(/_/g, " ")
+          );
+        })
+        .get(0);
+    }
 
     let komentariJsx;
 
