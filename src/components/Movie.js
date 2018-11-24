@@ -26,7 +26,7 @@ class Movie extends Component {
     const movie = this.props.podaci;
     let naziv, godina, slika;
 
-    if (movie && Object.keys(movie.length !== 0)) {
+    if (movie) {
       naziv = movie.naziv;
       godina = movie.godina;
       slika = movie.slika;

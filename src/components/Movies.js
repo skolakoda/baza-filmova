@@ -14,7 +14,6 @@ class Movies extends Component {
         key={film._id}
         to={{
           pathname: `/movie/${film.naziv.replace(/ /g, "_")}`
-          // state: film
         }}
       >
         <Movie podaci={film} />

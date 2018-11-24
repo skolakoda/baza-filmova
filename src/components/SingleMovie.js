@@ -11,7 +11,7 @@ class SingleMovie extends Component {
 
     let naziv, godina, slika, comments;
 
-    if (movie && Object.keys(movie.length !== 0)) {
+    if (movie) {
       naziv = movie.naziv;
       godina = movie.godina;
       slika = movie.slika;
