@@ -6,20 +6,8 @@ import Movie from "./Movie";
 import addMovie from "../shared/addMovie";
 
 class SingleMovie extends Component {
-  handleSubmit = e => {
+  handleSubmit = (movie, e) => {
     e.preventDefault();
-
-    let movie;
-
-    if (!this.props.filmovi.isEmpty()) {
-      movie = this.props.filmovi
-        .filter(film => {
-          return (
-            film.naziv === this.props.match.params.naziv.replace(/_/g, " ")
-          );
-        })
-        .get(0);
-    }
 
     let naziv, godina, slika, comments;
 
@@ -36,7 +24,6 @@ class SingleMovie extends Component {
     };
 
     const komentari = comments ? [...comments, noviKomentar] : [noviKomentar];
-
     addMovie(naziv, godina, slika, komentari);
   };
 
@@ -70,7 +57,7 @@ class SingleMovie extends Component {
       <div>
         <Link to="/">&lt; Back</Link> <Movie podaci={movie} />
         {komentariJsx}
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this, movie)}>
           <h3>Dodaj komentar</h3>
           <label>Ime:</label>
           <br />
