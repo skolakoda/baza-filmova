@@ -36,7 +36,7 @@ class Movie extends Component {
       <div>
         <h3>{naziv}</h3>
         <div className="image-holder">
-          {loggedIn ? (
+          {loggedIn && movie ? (
             <span
               onClick={this.deleteMovie}
               className="delete-btn"

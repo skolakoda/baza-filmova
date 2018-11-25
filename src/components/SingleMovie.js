@@ -56,19 +56,23 @@ class SingleMovie extends Component {
     return (
       <div>
         <Link to="/">&lt; Back</Link> <Movie podaci={movie} />
-        {komentariJsx}
-        <form onSubmit={this.handleSubmit.bind(this, movie)}>
-          <h3>Dodaj komentar</h3>
-          <label>Ime:</label>
-          <br />
-          <input name="ime" />
-          <br />
-          <label>Komentar: </label>
-          <br />
-          <textarea name="komentar" />
-          <br />
-          <button>Submit</button>
-        </form>
+        {movie ? (
+          <React.Fragment>
+            {komentariJsx}
+            <form onSubmit={this.handleSubmit.bind(this, movie)}>
+              <h3>Dodaj komentar</h3>
+              <label>Ime:</label>
+              <br />
+              <input name="ime" />
+              <br />
+              <label>Komentar: </label>
+              <br />
+              <textarea name="komentar" />
+              <br />
+              <button>Submit</button>
+            </form>
+          </React.Fragment>
+        ) : null}
       </div>
     );
   }
