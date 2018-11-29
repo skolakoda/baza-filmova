@@ -23,7 +23,7 @@ class Login extends Component {
   };
 
   render() {
-    let loggedIn = localStorage.getItem("loggedIn") === "true"
+    const loggedIn = localStorage.getItem("loggedIn") === "true"
     return (
       loggedIn ? (
         <button onClick={this.onClickLogout}>Logout</button>

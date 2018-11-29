@@ -6,17 +6,11 @@ import Movie from "./Movie";
 import addMovie from "../shared/addMovie";
 
 class SingleMovie extends Component {
+
   handleSubmit = (movie, e) => {
     e.preventDefault();
 
-    let naziv, godina, slika, comments;
-
-    if (movie) {
-      naziv = movie.naziv;
-      godina = movie.godina;
-      slika = movie.slika;
-      comments = movie.comments;
-    }
+    const {naziv, godina, slika, comments} = movie;
 
     const noviKomentar = {
       user: e.target.ime.value,
@@ -28,23 +22,15 @@ class SingleMovie extends Component {
   };
 
   render() {
-    let movie;
+    if(this.props.filmovi.isEmpty()) return null;
 
-    if (!this.props.filmovi.isEmpty()) {
-      movie = this.props.filmovi
-        .filter(film => {
-          return (
-            film.naziv === this.props.match.params.naziv.replace(/_/g, " ")
-          );
-        })
-        .get(0);
-    }
+    const movie = this.props.filmovi
+      .find(film => film.naziv === this.props.match.params.naziv.replace(/_/g, " "));
 
     let komentariJsx;
-
     try {
-      komentariJsx = movie.comments.map(k => (
-        <div>
+      komentariJsx = movie.comments.map((k, i) => (
+        <div key={i}>
           <small>{k.user}</small>
           <p>{k.comment}</p>
         </div>
