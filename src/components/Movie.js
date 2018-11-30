@@ -5,6 +5,7 @@ import { deleteUrl } from "../config/api";
 import { deleteMovie } from "../store/actions";
 
 class Movie extends Component {
+
   deleteMovie = e => {
     e.preventDefault();
     const { naziv, _id } = this.props.podaci;
@@ -23,20 +24,15 @@ class Movie extends Component {
   };
 
   render() {
-    const movie = this.props.podaci;
-    let naziv, godina, slika;
+    if (!this.props.podaci) return null;
+    const {naziv, godina, slika} = this.props.podaci
 
-    if (movie) {
-      naziv = movie.naziv;
-      godina = movie.godina;
-      slika = movie.slika;
-    }
     const loggedIn = localStorage.getItem("loggedIn") === "true";
     return (
       <div>
         <h3>{naziv}</h3>
         <div className="image-holder">
-          {loggedIn && movie ? (
+          {loggedIn ? (
             <span
               onClick={this.deleteMovie}
               className="delete-btn"

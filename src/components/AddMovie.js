@@ -23,7 +23,7 @@ class AddMovie extends Component {
   };
 
   render() {
-    let src = this.state.movieImg !== "" ? this.state.movieImg : fotoaparat;
+    const src = this.state.movieImg ? this.state.movieImg : fotoaparat;
     return (
       <form onSubmit={this.addMovie}>
         <h2>Dodaj film</h2>

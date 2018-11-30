@@ -31,13 +31,12 @@ class MiniAddMovie extends Component {
   };
 
   render() {
-    let { visible } = this.state;
     return (
       <div>
         <button onClick={this.togle}>Quick Add</button>
         <form
           onSubmit={this.addMovie}
-          style={visible ? { display: "block" } : { display: "none" }}
+          style={this.state.visible ? {display: "block"} : {display: "none"}}
         >
           <input
             name="movieName"
